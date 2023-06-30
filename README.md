@@ -1,7 +1,7 @@
 # ethernet-sender-image
 
 # Main code
-`
+```
 import socket
 import cv2
 import numpy as np
@@ -69,4 +69,4 @@ print("Image received. Time taken:", end_time - start_time, "seconds")
 cv2.imshow("Received Image", received_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-`
+```
