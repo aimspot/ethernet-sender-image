@@ -11,6 +11,7 @@ def receive_image(ip, port):
 
     conn, addr = sock.accept()
     print("Connected by", addr)
+    start_time = time.time()
     data = b""
     while True:
         chunk = conn.recv(4096)
@@ -18,6 +19,8 @@ def receive_image(ip, port):
             break
         data += chunk
     conn.close()
+    end_time = time.time()
+    print("Image received. Time taken:", end_time - start_time, "seconds")
 
     nparr = np.frombuffer(data, np.uint8)
     image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
@@ -25,6 +28,7 @@ def receive_image(ip, port):
 
 
 if __name__ == "__main__":
-    ip = "192.168.1.100"
+    ip = "10.74.8.13"
     port = 12345
-    receive_image(ip, port)
+    received_image = receive_image(ip, port)
+    print(received_image.shape)
